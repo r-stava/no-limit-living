@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\config",
+    "\\controllers",
+    "\\ml-model",
+    "\\models",
+    "\\nll-frontend\\public",
+    "\\nll-frontend\\src",
+    "\\scripts"
+  ],
+  "SelectedNode": "\\ml-model\\predict.py",
+  "PreviewInSolutionExplorer": false
+}
