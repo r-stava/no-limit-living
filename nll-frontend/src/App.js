@@ -6,20 +6,17 @@ function App() {
         name: '',
         age: '',
         CostOfLiving: '',
-        Violent: '',
-        Homicide: '',
-        Rape: '',
-        Robbery: '',
-        Assault: ''
+        lowCrimeRate: false, // New field for the checkbox
     });
 
     const [prediction, setPrediction] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: type === 'checkbox' ? checked : value,
         });
     };
 
@@ -27,12 +24,9 @@ function App() {
         e.preventDefault();
         setLoading(true);
         try {
-            // Send user data to the backend
             const userResponse = await axios.post('http://localhost:5000/api/user', formData);
             if (userResponse.status === 200) {
-                const userId = userResponse.data._id;  // Backend returns user ID
-
-                // Request prediction using the user ID
+                const userId = userResponse.data._id;
                 const predictionResponse = await axios.post('http://localhost:5000/api/predict', { userId });
                 setPrediction(predictionResponse.data);
                 alert(`Prediction: ${predictionResponse.data}`);
@@ -48,7 +42,7 @@ function App() {
 
     return (
         <div className="App">
-            <h1>No Limit Living User Form</h1>
+            <h1> No Limit Living User Information Form</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name:</label>
@@ -63,24 +57,8 @@ function App() {
                     <input type="number" name="CostOfLiving" value={formData.CostOfLiving} onChange={handleChange} />
                 </div>
                 <div>
-                    <label>Violent Crime Rate:</label>
-                    <input type="number" name="Violent" value={formData.Violent} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Homicide Rate:</label>
-                    <input type="number" name="Homicide" value={formData.Homicide} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Rape Rate:</label>
-                    <input type="number" name="Rape" value={formData.Rape} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Robbery Rate:</label>
-                    <input type="number" name="Robbery" value={formData.Robbery} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Assault Rate:</label>
-                    <input type="number" name="Assault" value={formData.Assault} onChange={handleChange} />
+                    <label>Low Crime Rate:</label>
+                    <input type="checkbox" name="lowCrimeRate" checked={formData.lowCrimeRate} onChange={handleChange} />
                 </div>
                 <button type="submit">Submit</button>
             </form>

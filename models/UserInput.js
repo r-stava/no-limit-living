@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const userInputSchema = new mongoose.Schema({
     name: { type: String, required: true },
     age: { type: Number, required: true },
-    CostOfLiving: { type: Number, required: false },
-    Violent: { type: Number, required: false },
-    Homicide: { type: Number, required: false },
-    Rape: { type: Number, required: false },
-    Robbery: { type: Number, required: false },
-    Assault: { type: Number, required: false }
+    CostOfLiving: { type: Number, required: true },
+    Violent: { type: Number, required: true },
+    Homicide: { type: Number, required: true },
+    Rape: { type: Number, required: true },
+    Robbery: { type: Number, required: true },
+    Assault: { type: Number, required: true }
 });
 
 const UserInput = mongoose.model('UserInput', userInputSchema);

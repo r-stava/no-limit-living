@@ -3,12 +3,8 @@
     "",
     "\\config",
     "\\controllers",
-    "\\ml-model",
-    "\\models",
-    "\\nll-frontend\\public",
-    "\\nll-frontend\\src",
     "\\scripts"
   ],
-  "SelectedNode": "\\ml-model\\predict.py",
+  "SelectedNode": "\\config\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
